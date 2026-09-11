@@ -13,7 +13,7 @@ const config: CapacitorConfig = {
     // Load the /auth route directly. The root route performs a server redirect
     // which can hit the Lovable SSR worker and occasionally fail with a 500; the
     // /auth route is static and loads reliably in the native webview.
-    url: "https://autofinance-mobile.lovable.app/auth",
+    url: "https://prod-autofinance-mobile.lovable.app/auth",
     cleartext: false,
     androidScheme: "https",
     allowNavigation: [
