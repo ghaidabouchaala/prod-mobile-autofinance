@@ -24,6 +24,29 @@ function ContractDetailPage() {
     },
   });
 
+  const dealerId = contract?.dealer_id != null ? String(contract.dealer_id) : null;
+
+  const { data: dealer } = useQuery({
+    queryKey: ["dealer", dealerId],
+    enabled: !!dealerId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("dealers")
+        .select("*")
+        .eq("id", dealerId)
+        .maybeSingle();
+      if (error) return null;
+      return data as Record<string, any> | null;
+    },
+  });
+
+  const dealerName =
+    (dealer?.name ?? dealer?.dealer_name ?? dealer?.company) ??
+    contract?.dealer_name ??
+    (typeof contract?.dealer === "string" ? contract.dealer : null) ??
+    dealerId ??
+    "—";
+
   return (
     <MobileShell title="Contract Detail" back={{ to: "/contracts" }}>
       {isLoading && (
@@ -54,7 +77,7 @@ function ContractDetailPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-y-4">
-              <Field label="Dealer" value={contract.dealer_name ?? contract.dealer ?? "—"} />
+              <Field label="Dealer" value={String(dealerName)} />
               <Field
                 label="Amount"
                 value={
