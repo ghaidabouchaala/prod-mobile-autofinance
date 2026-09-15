@@ -42,7 +42,10 @@ export const Route = createFileRoute("/api/public/contracts-summary")({
             throw new Error(`contracts request failed: ${res.status}`);
           }
           const rows = (await res.json()) as any[];
-          const total = parseContentRange(res.headers.get("content-range"));
+          const total = Math.max(
+            parseContentRange(res.headers.get("content-range")),
+            rows.length,
+          );
 
           const byStatus: Record<string, number> = {
             pending: 0,
