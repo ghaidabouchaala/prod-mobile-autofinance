@@ -48,7 +48,7 @@ async function fetchContracts(authHeader: string): Promise<{ rows: any[]; count:
 }
 
 async function fetchDealersCount(authHeader: string): Promise<number> {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/dealers?select=id&limit=0`, {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/dealers?select=id`, {
     headers: {
       apikey: SUPABASE_PUBLISHABLE_KEY,
       Authorization: authHeader,
@@ -58,7 +58,8 @@ async function fetchDealersCount(authHeader: string): Promise<number> {
   if (!res.ok) {
     throw new Error(`dealers request failed: ${res.status}`);
   }
-  return parseContentRange(res.headers.get("content-range"));
+  const rows = (await res.json()) as any[];
+  return Math.max(parseContentRange(res.headers.get("content-range")), rows.length);
 }
 
 export const Route = createFileRoute("/api/public/dashboard-stats")({
