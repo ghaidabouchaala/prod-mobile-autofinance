@@ -43,7 +43,10 @@ async function fetchContracts(authHeader: string): Promise<{ rows: any[]; count:
     throw new Error(`contracts request failed: ${res.status}`);
   }
   const rows = (await res.json()) as any[];
-  const count = parseContentRange(res.headers.get("content-range"));
+  const count = Math.max(
+    parseContentRange(res.headers.get("content-range")),
+    rows.length,
+  );
   return { rows, count };
 }
 
