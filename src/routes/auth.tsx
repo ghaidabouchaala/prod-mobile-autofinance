@@ -40,7 +40,7 @@ function AuthPage() {
           <FileText className="size-6 text-primary-foreground" strokeWidth={2.4} />
         </div>
         <h1 className="text-2xl font-semibold leading-tight tracking-tight text-balance">
-          Welcome to AutoFinance
+          Manage contract funding and dealer accounts on the go.
         </h1>
         <p className="mt-2 text-pretty text-muted-foreground">
           Sign in to manage contract funding and dealer accounts.
