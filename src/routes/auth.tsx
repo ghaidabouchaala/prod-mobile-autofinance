@@ -40,7 +40,7 @@ function AuthPage() {
           <FileText className="size-6 text-primary-foreground" strokeWidth={2.4} />
         </div>
         <h1 className="text-2xl font-semibold leading-tight tracking-tight text-balance">
-          Manage contract funding and dealer accounts on the go.
+          Welcome to AutoFinance
         </h1>
         <p className="mt-2 text-pretty text-muted-foreground">
           Sign in to manage contract funding and dealer accounts.
@@ -90,7 +90,7 @@ function AuthPage() {
           disabled={submitting}
           className="mt-2 h-12 w-full rounded-xl bg-primary font-medium text-primary-foreground ring-2 ring-primary/20 transition active:scale-[.98] disabled:opacity-60"
         >
-          {submitting ? "Signing in…" : "Continue"}
+          {submitting ? "Signing in…" : "Sign In"}
         </button>
       </form>
 
