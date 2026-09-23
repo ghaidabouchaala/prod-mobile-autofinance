@@ -90,7 +90,7 @@ function AuthPage() {
           disabled={submitting}
           className="mt-2 h-12 w-full rounded-xl bg-primary font-medium text-primary-foreground ring-2 ring-primary/20 transition active:scale-[.98] disabled:opacity-60"
         >
-          {submitting ? "Signing in…" : "Sign In"}
+          {submitting ? "Signing in…" : "Continue"}
         </button>
       </form>
 
